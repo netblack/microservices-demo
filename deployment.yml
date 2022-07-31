@@ -15,12 +15,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gke-test
+  name: microservices-demo-registration
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gke-test
+      app: microservices-demo-registration
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -29,13 +29,78 @@ spec:
   template:
     metadata:
       labels:
-        app: gke-test
+        app: microservices-demo-registration
     spec:
       containers:
-        - name: gke-test
+        - name: registration
           image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
+          cmmmand: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'registration', '1111']
           ports:
-            - containerPort: 8080
+            - containerPort: 1111
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 1000m
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservices-demo-accounts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservices-demo-accounts
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: microservices-demo-accounts
+    spec:
+      containers:
+        - name: accounts
+          image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
+          cmmmand: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'accounts', '2222']
+          ports:
+            - containerPort: 2222
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 1000m
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservices-demo-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservices-demo-web
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: microservices-demo-web
+    spec:
+      containers:
+        - name: web
+          image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
+          cmmmand: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'web', '3333']
+          ports:
+            - containerPort: 3333
           resources:
             requests:
               cpu: 100m
