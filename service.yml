@@ -30,7 +30,7 @@ kind: Service
 metadata:
   name: microservices-demo-registration
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 1111
       targetPort: 1111
