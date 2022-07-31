@@ -34,7 +34,7 @@ spec:
       containers:
         - name: registration
           image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
-          cmmmand: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'registration', '1111']
+          command: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'registration', '1111']
           ports:
             - containerPort: 1111
           resources:
@@ -66,7 +66,7 @@ spec:
       containers:
         - name: accounts
           image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
-          cmmmand: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'accounts', '2222']
+          command: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'accounts', '2222']
           ports:
             - containerPort: 2222
           resources:
@@ -98,7 +98,7 @@ spec:
       containers:
         - name: web
           image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
-          cmmmand: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'web', '3333']
+          command: ['java', '-jar', 'microservices-demo-2.0.0.RELEASE.jar', 'web', '3333']
           ports:
             - containerPort: 3333
           resources:
