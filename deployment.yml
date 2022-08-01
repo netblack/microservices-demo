@@ -66,7 +66,7 @@ spec:
       containers:
         - name: accounts
           image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
-          command: ['java', '-jar', '/app.jar', 'accounts', '2222']
+          command: ['java', '-jar', '/app.jar', 'accounts', '2222', '--registration.server.hostname', 'microservices-demo-registration:1111']
           ports:
             - containerPort: 2222
           resources:
@@ -98,7 +98,7 @@ spec:
       containers:
         - name: web
           image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
-          command: ['java', '-jar', '/app.jar', 'web', '3333']
+          command: ['java', '-jar', '/app.jar', 'web', '3333', '--registration.server.hostname', 'microservices-demo-registration:1111']
           ports:
             - containerPort: 3333
           resources:
